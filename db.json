@@ -1,0 +1,40 @@
+{
+  "pets": [
+    {
+      "id": 1,
+      "name": "Bella",
+      "description": "Friendly Labrador, great with families.",
+      "species": "Dog",
+      "age": 2,
+      "size": "Large",
+      "origin": "Serbia",
+      "price": 300,
+      "rating": 4.7,
+      "reviews": ["Loyal and sweet!", "Perfect family dog."]
+    },
+    {
+      "id": 2,
+      "name": "Luna",
+      "description": "Quiet parrot, easy to train.",
+      "species": "Bird",
+      "age": 1,
+      "size": "Small",
+      "origin": "Brazil",
+      "price": 120,
+      "rating": 4.3,
+      "reviews": ["Very colorful", "Talks a bit!"]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Test User",
+      "email": "test@example.com",
+      "password": "1234",
+      "phone": "123456789",
+      "address": "Test Street",
+      "favoriteSpecies": "Dog",
+      "cart": []
+    }
+  ]
+}

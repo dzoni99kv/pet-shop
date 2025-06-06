@@ -1,0 +1,51 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - hey
+
+- intent: search_pet
+  examples: |
+    - show me [dog](species)
+    - looking for a [bird](species)
+    - any pets from [Serbia](origin)?
+    - I want a [small](size) pet
+    - pets under [200](price)
+
+- intent: confirm_reservation
+  examples: |
+    - yes
+    - I want it
+    - reserve
+
+- intent: deny_reservation
+  examples: |
+    - no
+    - maybe later
+    - not now
+
+- intent: next_pet
+  examples: |
+    - next
+    - show me another
+
+- intent: view_cart
+  examples: |
+    - what's in my cart
+    - show my reserved pets
+    - list my pets
+
+- intent: cancel_reservation
+  examples: |
+    - cancel [Bella](pet_name)
+    - remove [Luna](pet_name) from cart
+    - delete [dog](species) from my cart
+
+- intent: rate_pet
+  examples: |
+    - I rate [Bella](pet_name) [5](rating) stars
+    - [4](rating) stars for [Luna](pet_name)
+    - give [Bella](pet_name) a [3](rating)

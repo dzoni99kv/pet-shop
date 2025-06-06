@@ -1,0 +1,10 @@
+{
+  "0": "cancel_reservation",
+  "1": "confirm_reservation",
+  "2": "deny_reservation",
+  "3": "greet",
+  "4": "next_pet",
+  "5": "rate_pet",
+  "6": "search_pet",
+  "7": "view_cart"
+}

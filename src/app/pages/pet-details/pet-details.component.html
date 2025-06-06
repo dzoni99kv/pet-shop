@@ -1,0 +1,18 @@
+<div class="container mt-4" *ngIf="pet">
+  <h2>{{ pet.name }}</h2>
+  <p><strong>Description:</strong> {{ pet.description }}</p>
+  <p><strong>Species:</strong> {{ pet.species }}</p>
+  <p><strong>Age:</strong> {{ pet.age }} years</p>
+  <p><strong>Size:</strong> {{ pet.size }}</p>
+  <p><strong>Origin:</strong> {{ pet.origin }}</p>
+  <p><strong>Price:</strong> ${{ pet.price }}</p>
+  <p><strong>Rating:</strong> {{ pet.rating }} ⭐</p>
+  <button class="btn btn-primary mt-3" (click)="addToCart()">Add to Cart</button>
+
+  <div *ngIf="pet.reviews.length">
+    <strong>Reviews:</strong>
+    <ul>
+      <li *ngFor="let review of pet.reviews">{{ review }}</li>
+    </ul>
+  </div>
+</div>

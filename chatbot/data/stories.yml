@@ -1,0 +1,9 @@
+version: "3.1"
+
+stories:
+- story: pet search and reserve
+  steps:
+    - intent: search_pet
+    - action: action_search_pet
+    - intent: confirm_reservation
+    - action: action_confirm_reservation

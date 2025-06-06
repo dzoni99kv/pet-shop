@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Available Pets</h2>
+
+  <!-- Filter Controls -->
+  <div class="row g-2 mb-4">
+    <!-- Search by Name -->
+    <div class="col-md-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name..."
+        [(ngModel)]="searchQuery"
+        (input)="filterPets()" />
+    </div>
+
+    <!-- Species Filter -->
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="selectedSpecies" (change)="filterPets()">
+        <option value="">All Species</option>
+        <option *ngFor="let s of uniqueSpecies" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <!-- Size Filter -->
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="selectedSize" (change)="filterPets()">
+        <option value="">All Sizes</option>
+        <option *ngFor="let s of uniqueSizes" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <!-- Origin Filter -->
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="selectedOrigin" (change)="filterPets()">
+        <option value="">All Origins</option>
+        <option *ngFor="let o of uniqueOrigins" [value]="o">{{ o }}</option>
+      </select>
+    </div>
+
+    <!-- Price Min -->
+    <div class="col-md-1">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Min $"
+        [(ngModel)]="priceMin"
+        (input)="filterPets()" />
+    </div>
+
+    <!-- Price Max -->
+    <div class="col-md-1">
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Max $"
+        [(ngModel)]="priceMax"
+        (input)="filterPets()" />
+    </div>
+
+    <!-- Rating Filter -->
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="minRating" (change)="filterPets()">
+        <option value="0">Any Rating</option>
+        <option value="1">1+ ⭐</option>
+        <option value="2">2+ ⭐</option>
+        <option value="3">3+ ⭐</option>
+        <option value="4">4+ ⭐</option>
+        <option value="5">5 ⭐ only</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Pet List -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let pet of filteredPets">
+      <a [routerLink]="['/pet', pet.id]" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ pet.name }}</h5>
+            <p class="card-text"><strong>Species:</strong> {{ pet.species }}</p>
+            <p class="card-text"><strong>Size:</strong> {{ pet.size }}</p>
+            <p class="card-text"><strong>Origin:</strong> {{ pet.origin }}</p>
+            <p class="card-text"><strong>Price:</strong> ${{ pet.price }}</p>
+            <p class="card-text"><strong>Rating:</strong> {{ pet.rating }} ⭐</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

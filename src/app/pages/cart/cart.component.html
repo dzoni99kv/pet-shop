@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <h2>Your Reservations</h2>
+
+  <div *ngIf="cartItems.length === 0">
+    <p>No reserved pets yet.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0">
+    <ul class="list-group mb-3">
+      <li
+        class="list-group-item"
+        *ngFor="let pet of cartItems; let i = index">
+        <strong>{{ pet.name }}</strong> - ${{ pet.price }}  
+        <span class="badge bg-info ms-2">Status: {{ pet.status }}</span>
+
+        <div class="mt-2">
+          <label>Status: </label>
+          <select class="form-select form-select-sm w-auto d-inline-block"
+                  [(ngModel)]="pet.status"
+                  (change)="updateStatus(pet, pet.status)">
+            <option value="u toku">u toku</option>
+            <option value="otkazano">otkazano</option>
+            <option value="preuzeto">preuzeto</option>
+          </select>
+        </div>
+
+        <div *ngIf="pet.status === 'completed'" class="mt-2">
+          <label>Rate this pet:</label>
+          <select class="form-select form-select-sm w-auto d-inline-block"
+                  [(ngModel)]="pet.userRating"
+                  (change)="ratePet(pet, pet.userRating)">
+            <option value="0">0 ⭐</option>
+            <option value="1">1 ⭐</option>
+            <option value="2">2 ⭐</option>
+            <option value="3">3 ⭐</option>
+            <option value="4">4 ⭐</option>
+            <option value="5">5 ⭐</option>
+          </select>
+        </div>
+
+        <button class="btn btn-danger btn-sm mt-2" (click)="remove(i)">Remove</button>
+      </li>
+    </ul>
+
+    <div class="fw-bold">
+      Total: ${{ getTotal() }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+version: "3.1"
+
+intents:
+  - greet
+  - search_pet
+  - confirm_reservation
+  - deny_reservation
+  - next_pet
+  - view_cart
+  - cancel_reservation
+  - rate_pet
+
+entities:
+  - species
+  - origin
+  - size
+  - price
+  - pet_name
+  - rating
+
+slots:
+  species:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: species
+  origin:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: origin
+  size:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: size
+  price:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: price
+  last_found_pet_id:
+    type: text
+    mappings:
+      - type: custom
+  matching_pet_ids:
+    type: list
+    mappings:
+      - type: custom
+  current_index:
+    type: float
+    mappings:
+      - type: custom
+
+responses:
+  utter_greet:
+    - text: "Hi! Ask me about any pet you're looking for."
+  utter_reservation_confirmed:
+    - text: "Great! The pet has been reserved and added to your cart."
+  utter_reservation_denied:
+    - text: "Okay! Let me know if you want to search again or reserve another pet."
+
+actions:
+  - action_search_pet
+  - action_confirm_reservation
+  - action_show_next_pet
+  - action_show_cart
+  - action_cancel_reservation
+  - action_rate_pet

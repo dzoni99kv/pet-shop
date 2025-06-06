@@ -1,0 +1,14 @@
+<div class="container mt-4" *ngIf="user">
+  <h3>Your Profile</h3>
+
+  <form (ngSubmit)="save()">
+    <input class="form-control mb-2" [(ngModel)]="user.fullName" name="fullName" placeholder="Full Name" />
+    <input class="form-control mb-2" [(ngModel)]="user.email" name="email" placeholder="Email" />
+    <input class="form-control mb-2" [(ngModel)]="user.phone" name="phone" placeholder="Phone" />
+    <input class="form-control mb-2" [(ngModel)]="user.address" name="address" placeholder="Address" />
+    <input class="form-control mb-2" [(ngModel)]="user.favoriteSpecies" name="favoriteSpecies" placeholder="Favorite Species" />
+    
+    <button class="btn btn-success me-2">Save Changes</button>
+    <button class="btn btn-outline-danger" (click)="logout()" type="button">Logout</button>
+  </form>
+</div>
