@@ -21,13 +21,13 @@ export class ProfileComponent implements OnInit {
 
     if (!this.user) {
       alert('You must be logged in to view your profile.');
-      this.router.navigate(['/auth']);
+      this.router.navigate(['/auth-login']);
     }
   }
 
   save(): void {
     if (this.user) {
-      this.authService.updateProfile(this.user);
+      this.authService.updateCurrentUser(this.user);
       alert('Profile updated!');
     }
   }

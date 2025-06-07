@@ -1,0 +1,47 @@
+version: "3.1"
+
+intents:
+  - greet
+  - search_pet
+  - confirm_reservation
+  - cancel_reservation
+  - view_cart
+  - rate_pet
+  - deny_reservation
+
+slots:
+  pet_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: pet_name
+
+  rating:
+    type: float
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: rating
+
+  cart:
+    type: list
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+    
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I help?"
+
+  utter_deny_reservation:
+    - text: "Okay, I won’t reserve anything."
+
+actions:
+  - action_search_pet
+  - action_confirm_reservation
+  - action_show_cart
+  - action_cancel_reservation
+  - action_rate_pet

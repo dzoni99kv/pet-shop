@@ -1,36 +1,52 @@
 import { Injectable } from '@angular/core';
+import { Reservation } from '../models/reservation.model';
 import { Pet } from '../models/pet.model';
 import { AuthService } from './auth.service';
+import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
   constructor(private authService: AuthService) {}
 
-  private get user() {
-    return this.authService.getCurrentUser();
+  private get user(): User {
+    const currentUser = this.authService.getCurrentUser();
+    if (!currentUser) throw new Error('User not logged in.');
+    if (!currentUser.cart) currentUser.cart = [];
+    return currentUser;
   }
 
-  getItems(): Pet[] {
-    return this.user?.cart || [];
+  getCart(): Reservation[] {
+    return this.user.cart;
   }
 
   addToCart(pet: Pet): void {
-    if (this.user) {
-      this.user.cart.push(pet);
-      this.authService.updateProfile(this.user); // persist
+    const exists = this.user.cart.find((r: Reservation) => r.pet.id === pet.id);
+    if (!exists) {
+      this.user.cart.push({ pet, status: 'in progress' });
+      this.authService.updateCurrentUser(this.user);
     }
   }
 
-  removeFromCart(index: number): void {
-    if (this.user) {
+  removeFromCart(petId: number): void {
+    const index = this.user.cart.findIndex((r) => r.pet.id === petId);
+    if (index !== -1) {
       this.user.cart.splice(index, 1);
-      this.authService.updateProfile(this.user); // persist
+      this.authService.updateCurrentUser(this.user); // ✅ sync to localStorage
     }
   }
 
-  getTotal(): number {
-    return this.getItems().reduce((sum, pet) => sum + pet.price, 0);
+  clearCart(): void {
+    this.user.cart = [];
+    this.authService.updateCurrentUser(this.user);
   }
+  updateReservation(updated: Reservation): void {
+  const index = this.user.cart.findIndex(r => r.pet.id === updated.pet.id);
+  if (index !== -1) {
+    this.user.cart[index] = updated;
+    this.authService.updateCurrentUser(this.user);
+  }
+}
+
 }

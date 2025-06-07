@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <h3>Login</h3>
+  <form (ngSubmit)="login()">
+    <input
+      class="form-control mb-2"
+      [(ngModel)]="loginEmail"
+      name="loginEmail"
+      placeholder="Email"
+      required
+    />
+    <input
+      class="form-control mb-2"
+      [(ngModel)]="loginPassword"
+      name="loginPassword"
+      type="password"
+      placeholder="Password"
+      required
+    />
+    <button class="btn btn-primary">Login</button>
+  </form>
+
+  <div class="mt-3 text-center">
+    <span>Don't have an account?</span>
+    <a routerLink="/auth-register">Register here</a>
+  </div>
+
+  <div class="text-danger mt-2" *ngIf="loginError">{{ loginError }}</div>
+</div>

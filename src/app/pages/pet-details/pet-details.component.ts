@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PetService } from '../../core/services/pet.service';
-import { Pet } from '../../core/models/pet.model';
 import { CartService } from '../../core/services/cart.service';
+import { Pet } from '../../core/models/pet.model';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-pet-details',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './pet-details.component.html',
-  styleUrls: ['./pet-details.component.css']
+  standalone: true,
+  imports: [ CommonModule, FormsModule ],
 })
 export class PetDetailsComponent implements OnInit {
-  pet: Pet | null = null;
+  pet!: Pet;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,16 +22,25 @@ export class PetDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.petService.getPetById(id).subscribe(data => {
-      this.pet = data;
+    this.petService.getPetById(id).subscribe(pet => {
+      this.pet = pet;
     });
   }
 
   addToCart(): void {
-    if (this.pet) {
-      this.cartService.addToCart(this.pet);
-      alert(`${this.pet.name} has been added to your cart!`);
+    this.cartService.addToCart(this.pet);
+  }
 
-    }
+  removeFromCart(): void {
+    this.cartService.removeFromCart(this.pet.id);
+  }
+
+  isInCart(): boolean {
+    return this.cartService.getCart().some(r => r.pet.id === this.pet.id);
+  }
+
+  getRating(petId: number): string {
+    const reviews = this.pet.reviews;
+    return reviews.length ? `${this.pet.rating} / 5` : "No reviews yet";
   }
 }

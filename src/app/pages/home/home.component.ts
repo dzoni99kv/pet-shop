@@ -24,6 +24,8 @@ export class HomeComponent implements OnInit {
   selectedSpecies = '';
   selectedSize = '';
   selectedOrigin = '';
+  ratingRange: string = '';
+
 
   constructor(private petService: PetService) {}
 
@@ -34,18 +36,31 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getRating(petId: number): string {
+    const result = this.petService.getGlobalRating(petId);
+    return `${result.average} ⭐ (${result.count} reviews)`;
+  }
   filterPets(): void {
   const query = this.searchQuery.trim().toLowerCase();
 
-  this.filteredPets = this.pets.filter(pet =>
-    pet.name.toLowerCase().includes(query) &&
-    (this.selectedSpecies ? pet.species === this.selectedSpecies : true) &&
-    (this.selectedSize ? pet.size === this.selectedSize : true) &&
-    (this.selectedOrigin ? pet.origin === this.selectedOrigin : true) &&
-    pet.price >= this.priceMin &&
-    pet.price <= this.priceMax &&
-    pet.rating >= this.minRating
-  );
+  this.filteredPets = this.pets.filter(pet => {
+  const query = this.searchQuery.toLowerCase();
+
+  const matchesName = pet.name.toLowerCase().includes(query);
+  const matchesSpecies = this.selectedSpecies ? pet.species === this.selectedSpecies : true;
+  const matchesSize = this.selectedSize ? pet.size === this.selectedSize : true;
+  const matchesOrigin = this.selectedOrigin ? pet.origin === this.selectedOrigin : true;
+  const matchesPrice = pet.price >= this.priceMin && pet.price <= this.priceMax;
+
+  let matchesRating = true;
+  if (this.ratingRange) {
+    const [min, max] = this.ratingRange.split('-').map(Number);
+    matchesRating = pet.rating >= min && pet.rating < max;
+  }
+
+  return matchesName && matchesSpecies && matchesSize && matchesOrigin && matchesPrice && matchesRating;
+});
+
 }
 
 

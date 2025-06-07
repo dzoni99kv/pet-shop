@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Improve scroll feel */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Bootstrap button overrides */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.45rem 1.2rem;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Form input consistency */
+input.form-control,
+select.form-select {
+  border-radius: 8px;
+  padding: 0.5rem;
+}

@@ -1,40 +1,157 @@
 {
   "pets": [
     {
-      "id": 1,
-      "name": "Bella",
-      "description": "Friendly Labrador, great with families.",
-      "species": "Dog",
-      "age": 2,
-      "size": "Large",
+      "id": "1",
+      "name": "Charlie",
+      "description": "Friendly medium-sized dog, needs daily walks and social interaction.",
+      "species": "dog",
+      "age": 3,
+      "size": "medium",
       "origin": "Serbia",
-      "price": 300,
-      "rating": 4.7,
-      "reviews": ["Loyal and sweet!", "Perfect family dog."]
+      "price": 150,
+      "rating": 3.5,
+      "reviews": [
+        "Very playful!",
+        "Loves kids.",
+        "2 ⭐ from n",
+        "5 ⭐ from n"
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Luna",
-      "description": "Quiet parrot, easy to train.",
-      "species": "Bird",
-      "age": 1,
-      "size": "Small",
-      "origin": "Brazil",
+      "description": "Independent cat, enjoys sunny windowsills and quiet environments.",
+      "species": "cat",
+      "age": 2,
+      "size": "small",
+      "origin": "Hungary",
       "price": 120,
-      "rating": 4.3,
-      "reviews": ["Very colorful", "Talks a bit!"]
-    }
-  ],
-  "users": [
+      "rating": 5,
+      "reviews": [
+        "Calm and affectionate.",
+        "Perfect indoor pet.",
+        "5 ⭐ from n"
+      ]
+    },
     {
-      "id": 1,
-      "fullName": "Test User",
-      "email": "test@example.com",
-      "password": "1234",
-      "phone": "123456789",
-      "address": "Test Street",
-      "favoriteSpecies": "Dog",
-      "cart": []
+      "id": "3",
+      "name": "Polly",
+      "description": "Tropical bird, requires a spacious cage and mental stimulation.",
+      "species": "bird",
+      "age": 1,
+      "size": "small",
+      "origin": "Brazil",
+      "price": 90,
+      "rating": 4.5,
+      "reviews": [
+        "Talks a lot!",
+        "Very colorful."
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Bubbles",
+      "description": "Easy to maintain, needs clean tank water and a calm environment.",
+      "species": "fish",
+      "age": 1,
+      "size": "tiny",
+      "origin": "Thailand",
+      "price": 25,
+      "rating": 4.3,
+      "reviews": [
+        "Easy to care for.",
+        "Very peaceful."
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Max",
+      "description": "Large, strong dog, ideal for guarding and outdoor living.",
+      "species": "dog",
+      "age": 4,
+      "size": "large",
+      "origin": "Germany",
+      "price": 200,
+      "rating": 4.6,
+      "reviews": [
+        "Great guard dog.",
+        "Loyal and strong."
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Mimi",
+      "description": "Gentle rabbit, loves attention and needs a safe play area.",
+      "species": "rabbit",
+      "age": 2,
+      "size": "small",
+      "origin": "France",
+      "price": 70,
+      "rating": 4.4,
+      "reviews": [
+        "Cute and cuddly.",
+        "Eats a lot of lettuce."
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Spike",
+      "description": "Reptile that requires heat, UV light, and specialized diet.",
+      "species": "iguana",
+      "age": 3,
+      "size": "medium",
+      "origin": "Mexico",
+      "price": 130,
+      "rating": 4.1,
+      "reviews": [
+        "Very exotic.",
+        "Needs heat lamp."
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Tango",
+      "description": "Colorful parrot, enjoys interaction, music, and daily care.",
+      "species": "parrot",
+      "age": 5,
+      "size": "medium",
+      "origin": "Venezuela",
+      "price": 180,
+      "rating": 4.9,
+      "reviews": [
+        "Loves music!",
+        "Smart and funny."
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Coco",
+      "description": "Tiny hamster, active at night, needs a running wheel and clean cage.",
+      "species": "hamster",
+      "age": 1,
+      "size": "tiny",
+      "origin": "Poland",
+      "price": 35,
+      "rating": 4.2,
+      "reviews": [
+        "Runs all night!",
+        "Great for kids."
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Nemo",
+      "description": "Bright tropical fish, best kept in small groups with clean water.",
+      "species": "fish",
+      "age": 1,
+      "size": "tiny",
+      "origin": "Australia",
+      "price": 30,
+      "rating": 4.6,
+      "reviews": [
+        "Bright colors.",
+        "Peaceful and easy."
+      ]
     }
   ]
 }

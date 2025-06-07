@@ -6,8 +6,23 @@
   <p><strong>Size:</strong> {{ pet.size }}</p>
   <p><strong>Origin:</strong> {{ pet.origin }}</p>
   <p><strong>Price:</strong> ${{ pet.price }}</p>
-  <p><strong>Rating:</strong> {{ pet.rating }} ⭐</p>
-  <button class="btn btn-primary mt-3" (click)="addToCart()">Add to Cart</button>
+  <p><strong>Rating:</strong> {{ getRating(pet.id) }}</p>
+
+  <button
+    *ngIf="!isInCart()"
+    class="btn btn-primary mt-3"
+    (click)="addToCart()"
+  >
+    Add to Cart
+  </button>
+
+  <button
+    *ngIf="isInCart()"
+    class="btn btn-danger mt-3"
+    (click)="removeFromCart()"
+  >
+    Remove from Cart
+  </button>
 
   <div *ngIf="pet.reviews.length">
     <strong>Reviews:</strong>

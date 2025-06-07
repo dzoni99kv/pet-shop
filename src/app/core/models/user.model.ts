@@ -1,4 +1,4 @@
-import { Pet } from "./pet.model";
+import { Reservation } from './reservation.model';
 
 export interface User {
   id: number;
@@ -8,5 +8,5 @@ export interface User {
   phone: string;
   address: string;
   favoriteSpecies: string;
-  cart: Pet[];
+  cart: Reservation[];
 }

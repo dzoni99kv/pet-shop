@@ -8,6 +8,10 @@ interface Message {
   message: string;
 }
 
+type ChatMessage = {
+  sender: 'user' | 'bot';
+  message: string;
+};
 @Component({
   selector: 'app-chatbot',
   standalone: true,
@@ -15,26 +19,25 @@ interface Message {
   templateUrl: './chatbot.component.html',
   styleUrls: ['./chatbot.component.css']
 })
+
+
 export class ChatbotComponent {
-  messages: Message[] = [];
+  messages: ChatMessage[] = []; // ✅ add type here
   newMessage = '';
+  isOpen = false;
 
-  constructor(private http: HttpClient) {}
+  toggleChat() {
+    this.isOpen = !this.isOpen;
+  }
 
-  send(): void {
+  send() {
     if (!this.newMessage.trim()) return;
 
-    const userMessage = this.newMessage;
-    this.messages.push({ sender: 'user', message: userMessage });
+    this.messages.push({ sender: 'user', message: this.newMessage });
     this.newMessage = '';
 
-    this.http.post<any>('http://localhost:5005/webhooks/rest/webhook', {
-      sender: 'user',
-      message: userMessage
-    }).subscribe((responses) => {
-      responses.forEach((r: any) => {
-        this.messages.push({ sender: 'bot', message: r.text });
-      });
-    });
+    setTimeout(() => {
+      this.messages.push({ sender: 'bot', message: 'Hello! How can I help?' });
+    }, 600);
   }
 }

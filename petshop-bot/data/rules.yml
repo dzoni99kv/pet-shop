@@ -1,0 +1,37 @@
+version: "3.1"
+
+rules:
+- rule: Greet user
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- rule: Search for a pet
+  steps:
+    - intent: search_pet
+    - action: action_search_pet
+
+- rule: Confirm reservation
+  steps:
+    - intent: confirm_reservation
+    - action: action_confirm_reservation
+
+- rule: Show cart
+  steps:
+    - intent: view_cart
+    - action: action_show_cart
+
+- rule: Cancel reservation
+  steps:
+    - intent: cancel_reservation
+    - action: action_cancel_reservation
+
+- rule: Rate pet
+  steps:
+    - intent: rate_pet
+    - action: action_rate_pet
+
+- rule: Deny reservation
+  steps:
+    - intent: deny_reservation
+    - action: utter_deny_reservation

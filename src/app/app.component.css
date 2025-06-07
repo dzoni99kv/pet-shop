@@ -1,0 +1,26 @@
+/* Add margin around routed views */
+:host {
+  display: block;
+  padding: 2rem;
+}
+
+/* Chatbot box styling */
+app-chatbot {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* Responsive spacing for small devices */
+@media (max-width: 576px) {
+  :host {
+    padding: 1rem;
+  }
+
+  app-chatbot {
+    width: 100% !important;
+    right: 0 !important;
+  }
+}
+

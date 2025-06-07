@@ -1,17 +1,69 @@
-<div class="chat-box">
-  <div *ngFor="let msg of messages" class="message">
-    <strong [style.color]="msg.sender === 'user' ? 'blue' : 'green'">
-      {{ msg.sender === 'user' ? 'You:' : 'Bot:' }}
-    </strong>
-    <span>{{ msg.message }}</span>
+<!-- Updated chatbot placement to move to the middle right (where the red square is) -->
+<div class="chatbot-widget" [class.open]="isOpen">
+  <!-- Floating Button -->
+  <div class="chat-toggle" (click)="toggleChat()">
+    💬
+  </div>
+
+  <!-- Full Chat UI -->
+  <div class="chat-window" *ngIf="isOpen">
+    <div class="chat-box">
+      <div *ngFor="let msg of messages" class="message">
+        <strong [style.color]="msg.sender === 'user' ? 'blue' : 'green'">
+          {{ msg.sender === 'user' ? 'You:' : 'Bot:' }}
+        </strong>
+        <span>{{ msg.message }}</span>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <input
+        [(ngModel)]="newMessage"
+        placeholder="Type a message..."
+        (keyup.enter)="send()"
+      />
+      <button (click)="send()">Send</button>
+    </div>
   </div>
 </div>
 
-<div class="input-area">
-  <input
-    [(ngModel)]="newMessage"
-    placeholder="Type a message..."
-    (keyup.enter)="send()"
-  />
-  <button (click)="send()">Send</button>
-</div>
+<style>
+.chatbot-widget {
+  position: fixed;
+  top: 40%; /* middle-right position */
+  right: 1rem;
+  z-index: 1000;
+  width: 320px;
+  max-width: 90%;
+}
+
+.chat-toggle {
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.chat-toggle:hover {
+  background-color: #0056b3;
+}
+
+.chat-window {
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+}
+</style>

@@ -1,8 +1,43 @@
+/* Card style enhancements */
 .card {
-  border: 1px solid #ccc;
-  transition: box-shadow 0.2s ease;
+  border: none;
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Card body spacing */
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Title and text spacing */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Filter spacing and layout */
+.row.g-2.mb-4 > .col-md-2,
+.row.g-2.mb-4 > .col-md-3,
+.row.g-2.mb-4 > .col-md-1 {
+  min-width: 150px;
+}
+
+/* Responsive padding */
+.container {
+  padding-bottom: 2rem;
 }

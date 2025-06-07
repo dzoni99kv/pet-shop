@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <h3>Register</h3>
+  <form (ngSubmit)="register()">
+    <input class="form-control mb-2" [(ngModel)]="registerUser.fullName" name="fullName" placeholder="Full Name" required />
+    <input class="form-control mb-2" [(ngModel)]="registerUser.email" name="email" placeholder="Email" required />
+    <input class="form-control mb-2" [(ngModel)]="registerUser.password" name="password" type="password" placeholder="Password" required />
+    <input class="form-control mb-2" [(ngModel)]="registerUser.phone" name="phone" placeholder="Phone" />
+    <input class="form-control mb-2" [(ngModel)]="registerUser.address" name="address" placeholder="Address" />
+    <input class="form-control mb-2" [(ngModel)]="registerUser.favoriteSpecies" name="favoriteSpecies" placeholder="Favorite Species" />
+    <button class="btn btn-success">Register</button>
+  </form>
+
+  <div class="text-danger mt-2" *ngIf="registerError">{{ registerError }}</div>
+</div>

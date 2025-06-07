@@ -1,49 +1,91 @@
 <div class="container mt-4">
-  <h2>Your Reservations</h2>
+  <h2 class="mb-4">Your Reservations</h2>
 
   <div *ngIf="cartItems.length === 0">
-    <p>No reserved pets yet.</p>
+    <p class="text-muted">No reserved pets yet.</p>
   </div>
 
   <div *ngIf="cartItems.length > 0">
-    <ul class="list-group mb-3">
-      <li
-        class="list-group-item"
-        *ngFor="let pet of cartItems; let i = index">
-        <strong>{{ pet.name }}</strong> - ${{ pet.price }}  
-        <span class="badge bg-info ms-2">Status: {{ pet.status }}</span>
+    <div class="row g-4">
+      <div class="col-md-6" *ngFor="let item of cartItems; let i = index">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <h5 class="card-title mb-1">{{ item.pet.name }}</h5>
+                <p class="mb-1 text-muted">${{ item.pet.price }}</p>
+              </div>
+              <span
+                class="badge"
+                [ngClass]="{
+                  'bg-success': item.status === 'completed',
+                  'bg-warning text-dark': item.status === 'in progress',
+                  'bg-danger': item.status === 'cancelled'
+                }"
+              >
+                {{ item.status }}
+              </span>
+            </div>
 
-        <div class="mt-2">
-          <label>Status: </label>
-          <select class="form-select form-select-sm w-auto d-inline-block"
-                  [(ngModel)]="pet.status"
-                  (change)="updateStatus(pet, pet.status)">
-            <option value="u toku">u toku</option>
-            <option value="otkazano">otkazano</option>
-            <option value="preuzeto">preuzeto</option>
-          </select>
+            <p class="mb-2">
+              <strong>Species:</strong> {{ item.pet.species }} <br />
+              <strong>Origin:</strong> {{ item.pet.origin }}
+            </p>
+
+            <div class="d-flex align-items-center mb-2">
+              <label class="me-2 mb-0">Change Status:</label>
+              <select
+                class="form-select form-select-sm w-auto"
+                [(ngModel)]="item.status"
+                (change)="updateStatus(item, item.status)"
+              >
+                <option value="in progress">In Progress</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+
+            <div
+              *ngIf="item.status === 'completed' && !hasUserRated(item)"
+              class="mt-2"
+            >
+              <label class="me-2">Rate this pet:</label>
+              <select
+                class="form-select form-select-sm d-inline-block w-auto"
+                [(ngModel)]="item.userRating"
+              >
+                <option value="0">0 ⭐</option>
+                <option value="1">1 ⭐</option>
+                <option value="2">2 ⭐</option>
+                <option value="3">3 ⭐</option>
+                <option value="4">4 ⭐</option>
+                <option value="5">5 ⭐</option>
+              </select>
+              <button
+                class="btn btn-sm btn-success ms-2 mt-1"
+                (click)="ratePet(item)"
+              >
+                Submit Rating
+              </button>
+            </div>
+
+            <div class="text-end mt-3">
+              <button
+                *ngIf="item.status !== 'completed'"
+                class="btn btn-sm btn-outline-danger"
+                (click)="removeFromCart(item.pet.id)"
+              >
+                Remove from Cart
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div *ngIf="pet.status === 'completed'" class="mt-2">
-          <label>Rate this pet:</label>
-          <select class="form-select form-select-sm w-auto d-inline-block"
-                  [(ngModel)]="pet.userRating"
-                  (change)="ratePet(pet, pet.userRating)">
-            <option value="0">0 ⭐</option>
-            <option value="1">1 ⭐</option>
-            <option value="2">2 ⭐</option>
-            <option value="3">3 ⭐</option>
-            <option value="4">4 ⭐</option>
-            <option value="5">5 ⭐</option>
-          </select>
-        </div>
-
-        <button class="btn btn-danger btn-sm mt-2" (click)="remove(i)">Remove</button>
-      </li>
-    </ul>
-
-    <div class="fw-bold">
-      Total: ${{ getTotal() }}
+    <div class="mt-4 text-end">
+      <h5 class="fw-bold">Total: ${{ getTotal() }}</h5>
     </div>
   </div>
 </div>
+
